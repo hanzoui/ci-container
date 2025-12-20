@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/playwright/python:v1.57.0-noble
 # Install Node.js and pnpm
 RUN apt-get update && \
     apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g pnpm && \
     rm -rf /var/lib/apt/lists/*
