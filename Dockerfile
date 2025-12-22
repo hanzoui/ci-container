@@ -11,6 +11,10 @@ RUN apt-get update && \
 # ComfyUI version to cache (update when new version released)
 ARG COMFYUI_VERSION=v0.5.1
 
+RUN groupadd -r pwuser && useradd -r -g pwuser -G audio,video pwuser \
+    && mkdir -p /home/pwuser/Downloads \
+    && chown -R pwuser:pwuser /home/pwuser
+
 # Clone ComfyUI at pinned version
 RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
     https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
@@ -24,5 +28,11 @@ RUN pip3 install --upgrade pip --break-system-packages && \
       --index-url https://download.pytorch.org/whl/cpu --break-system-packages && \
     pip3 install -r /ComfyUI/requirements.txt --break-system-packages && \
     pip3 install wait-for-it --break-system-packages
+
+# Set ownership for app directory
+RUN mkdir -p /app && chown -R pwuser:pwuser /app /ComfyUI
+
+# Switch to non-root user
+USER pwuser
 
 WORKDIR /app
