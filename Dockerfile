@@ -11,10 +11,6 @@ RUN apt-get update && \
 # ComfyUI version to cache (update when new version released)
 ARG COMFYUI_VERSION=v0.5.1
 
-RUN groupadd -r pwuser && useradd -r -g pwuser -G audio,video pwuser \
-    && mkdir -p /home/pwuser/Downloads \
-    && chown -R pwuser:pwuser /home/pwuser
-
 # Clone ComfyUI at pinned version
 RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
     https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
