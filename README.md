@@ -19,7 +19,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/myestery/comfyui-test-action:v1
+      image: ghcr.io/comfy-org/comfyui-ci-container:v1
     strategy:
       matrix:
         shard: [1, 2, 3, 4]
@@ -48,9 +48,9 @@ jobs:
 
 ## Image Tags
 
-- `ghcr.io/myestery/comfyui-test-action:latest` - Latest build
-- `ghcr.io/myestery/comfyui-test-action:v1` - Stable v1
-- `ghcr.io/myestery/comfyui-test-action:comfyui-v0.5.1` - Specific ComfyUI version
+- `ghcr.io/comfy-org/comfyui-ci-container:latest` - Latest build
+- `ghcr.io/comfy-org/comfyui-ci-container:0.0.3` - Stable v0.0.3
+- `ghcr.io/comfy-org/comfyui-ci-container:comfyui-v0.5.1` - Specific ComfyUI version
 
 ## Time Savings
 
