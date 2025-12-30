@@ -13,10 +13,16 @@ RUN git clone --depth 1 --branch ${COMFYUI_VERSION} \
 # Pre-create custom_nodes directory for devtools
 RUN mkdir -p /ComfyUI/custom_nodes/ComfyUI_devtools
 
-# Install python
+# Install python and fonts to match GitHub Actions runner
 RUN apt-get update && \
     # Install Python
     apt-get install -y python3 curl && \
+    # Install fonts to match Ubuntu Desktop/GitHub runner font metrics
+    apt-get install -y --no-install-recommends \
+        fonts-dejavu-core \
+        fonts-noto-core \
+        fonts-noto-cjk \
+        fonts-ubuntu && \
     # Align with upstream Python image and don't be externally managed:
     # https://github.com/docker-library/python/issues/948
     rm /usr/lib/python3.12/EXTERNALLY-MANAGED && \
