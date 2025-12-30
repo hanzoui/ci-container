@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y git && \
 
 # Create venv and install all Python dependencies
 ENV VIRTUAL_ENV=/opt/venv
-RUN uv venv $VIRTUAL_ENV && \
-    uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
+RUN uv venv $VIRTUAL_ENV
+RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
     uv pip install -r /ComfyUI/requirements.txt && \
     uv pip install wait-for-it
 
