@@ -35,17 +35,20 @@ RUN apt-get update && \
     # clean apt cache
     rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies (all cached in image)
-RUN pip3 install --upgrade pip --break-system-packages && \
-    pip3 install torch torchvision torchaudio \
-      --index-url https://download.pytorch.org/whl/cpu --break-system-packages && \
-    pip3 install -r /ComfyUI/requirements.txt --break-system-packages && \
-    pip3 install wait-for-it --break-system-packages
-
 # Set ownership for app directory
 RUN mkdir -p /app && chown -R pwuser:pwuser /app /ComfyUI
 
 # Switch to non-root user
 USER pwuser
+
+# Install Python dependencies as pwuser (all cached in image)
+RUN pip3 install --user --upgrade pip && \
+    pip3 install --user torch torchvision torchaudio \
+      --index-url https://download.pytorch.org/whl/cpu && \
+    pip3 install --user -r /ComfyUI/requirements.txt && \
+    pip3 install --user wait-for-it
+
+# Ensure user-installed packages are in PATH
+ENV PATH="/home/pwuser/.local/bin:${PATH}"
 
 WORKDIR /app
