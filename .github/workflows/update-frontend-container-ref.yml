@@ -21,6 +21,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             VERSION="${{ github.ref_name }}"
+            VERSION="${VERSION#v}"
           else
             VERSION="${{ inputs.version }}"
           fi
