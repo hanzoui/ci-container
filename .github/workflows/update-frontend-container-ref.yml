@@ -29,7 +29,7 @@ jobs:
       - name: Checkout ComfyUI_frontend
         uses: actions/checkout@v4
         with:
-          repository: Comfy-Org/ComfyUI_frontend
+          repository: myestery/ComfyUI_frontend
           token: ${{ secrets.FRONTEND_PAT }}
 
       - name: Get current version
