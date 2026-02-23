@@ -166,7 +166,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}},value=${{ steps.version.outputs.tag }}
             type=semver,pattern={{major}},value=${{ steps.version.outputs.tag }}
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=comfyui-v0.5.1
+            type=raw,value=hanzo-studio-v0.5.1
             type=raw,value=playwright-v1.57.0
 
       - name: Build and push Docker image
