@@ -19,7 +19,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/comfy-org/hanzo-studio-ci-container:v1
+      image: ghcr.io/hanzoui/hanzo-studio-ci-container:v1
     strategy:
       matrix:
         shard: [1, 2, 3, 4]
@@ -48,9 +48,9 @@ jobs:
 
 ## Image Tags
 
-- `ghcr.io/comfy-org/hanzo-studio-ci-container:latest` - Latest build
-- `ghcr.io/comfy-org/hanzo-studio-ci-container:0.0.3` - Stable v0.0.3
-- `ghcr.io/comfy-org/hanzo-studio-ci-container:hanzo-studio-v0.5.1` - Specific Hanzo Studio version
+- `ghcr.io/hanzoui/hanzo-studio-ci-container:latest` - Latest build
+- `ghcr.io/hanzoui/hanzo-studio-ci-container:0.0.3` - Stable v0.0.3
+- `ghcr.io/hanzoui/hanzo-studio-ci-container:hanzo-studio-v0.5.1` - Specific Hanzo Studio version
 
 ## Time Savings
 

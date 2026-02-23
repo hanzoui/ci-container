@@ -7,7 +7,7 @@ ARG COMFYUI_VERSION=v0.11.1
 # Clone Hanzo Studio
 RUN apt-get update && apt-get install -y git && \
     git clone --depth 1 --branch ${COMFYUI_VERSION} \
-    https://github.com/comfy-org/HanzoStudio.git /HanzoStudio
+    https://github.com/hanzoai/studio.git /HanzoStudio
 
 # Create venv and install all Python dependencies
 ENV VIRTUAL_ENV=/opt/venv
