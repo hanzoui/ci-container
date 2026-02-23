@@ -1,3 +1,4 @@
+# Secrets: Hanzo KMS (kms.hanzo.ai) — auth via Hanzo IAM
 name: "Update Frontend Container Reference"
 
 on:
@@ -16,6 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     steps:
+      - name: Fetch secrets from Hanzo KMS
+        id: kms
+        uses: hanzoui/.github/actions/kms-secrets@main
+        with:
+          kms_client_id: ${{ secrets.KMS_CLIENT_ID }}
+          kms_client_secret: ${{ secrets.KMS_CLIENT_SECRET }}
+          secrets: 'FRONTEND_PAT'
       - name: Get version
         id: version
         run: |
@@ -31,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: hanzoui/studio_frontend
-          token: ${{ secrets.FRONTEND_PAT }}
+          token: ${{ steps.kms.outputs.FRONTEND_PAT }}
 
       - name: Get current version
         id: current
@@ -50,7 +58,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.FRONTEND_PAT }}
+          token: ${{ steps.kms.outputs.FRONTEND_PAT }}
           branch: automation/ci-container-${{ steps.version.outputs.version }}
           title: "chore: bump CI container to ${{ steps.version.outputs.version }}"
           body: |
