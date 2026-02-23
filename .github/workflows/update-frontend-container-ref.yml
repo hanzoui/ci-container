@@ -35,7 +35,7 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Checkout Hanzo Studio_frontend
+      - name: Checkout HanzoStudio_frontend
         uses: actions/checkout@v4
         with:
           repository: hanzoui/studio_frontend
