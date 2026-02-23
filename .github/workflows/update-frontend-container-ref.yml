@@ -38,7 +38,7 @@ jobs:
       - name: Checkout HanzoStudio_frontend
         uses: actions/checkout@v4
         with:
-          repository: hanzoui/studio_frontend
+          repository: hanzoui/frontend
           token: ${{ steps.kms.outputs.FRONTEND_PAT }}
 
       - name: Get current version
