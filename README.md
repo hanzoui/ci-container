@@ -35,7 +35,7 @@ jobs:
       - name: Setup Hanzo Studio
         run: |
           ln -sf /Hanzo Studio ./Hanzo Studio
-          cp -r ./tools/devtools/* /Hanzo Studio/custom_nodes/Hanzo Studio_devtools/
+          cp -r ./tools/devtools/* /Hanzo Studio/custom_nodes/HanzoStudio_devtools/
           cd /Hanzo Studio && python3 main.py --cpu --multi-user --front-end-root $GITHUB_WORKSPACE/dist &
           wait-for-it --service 127.0.0.1:8188 -t 600
 

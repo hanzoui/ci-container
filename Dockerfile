@@ -42,7 +42,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 ENV VIRTUAL_ENV="/opt/venv"
 
 # Create devtools directory (for mounting/copying at runtime)
-RUN mkdir -p /Hanzo Studio/custom_nodes/Hanzo Studio_devtools
+RUN mkdir -p /Hanzo Studio/custom_nodes/HanzoStudio_devtools
 
 # Set ownership for pwuser (from Playwright base image)
 RUN mkdir -p /app && chown -R pwuser:pwuser /Hanzo Studio /opt/venv /app
