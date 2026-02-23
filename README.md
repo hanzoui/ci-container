@@ -7,7 +7,7 @@ A Docker container image pre-configured for running Playwright E2E tests against
 - Playwright browsers (Chromium, Firefox, WebKit)
 - Node.js + pnpm
 - Python 3 + pip
-- Hanzo Studio backend (pinned version) at `/Hanzo Studio`
+- Hanzo Studio backend (pinned version) at `/HanzoStudio`
 - All Python dependencies pre-installed (torch CPU, requirements.txt, wait-for-it)
 
 ## Usage
@@ -34,9 +34,9 @@ jobs:
       # Setup - just copy devtools and start server (no clone, no pip install)
       - name: Setup Hanzo Studio
         run: |
-          ln -sf /Hanzo Studio ./Hanzo Studio
-          cp -r ./tools/devtools/* /Hanzo Studio/custom_nodes/HanzoStudio_devtools/
-          cd /Hanzo Studio && python3 main.py --cpu --multi-user --front-end-root $GITHUB_WORKSPACE/dist &
+          ln -sf /HanzoStudio ./HanzoStudio
+          cp -r ./tools/devtools/* /HanzoStudio/custom_nodes/HanzoStudio_devtools/
+          cd /HanzoStudio && python3 main.py --cpu --multi-user --front-end-root $GITHUB_WORKSPACE/dist &
           wait-for-it --service 127.0.0.1:8188 -t 600
 
       - name: Install frontend deps
