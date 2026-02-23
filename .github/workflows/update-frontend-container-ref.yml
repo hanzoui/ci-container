@@ -27,23 +27,23 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Checkout ComfyUI_frontend
+      - name: Checkout Hanzo Studio_frontend
         uses: actions/checkout@v4
         with:
-          repository: Comfy-Org/ComfyUI_frontend
+          repository: hanzoui/studio_frontend
           token: ${{ secrets.FRONTEND_PAT }}
 
       - name: Get current version
         id: current
         run: |
-          CURRENT=$(grep -oP 'comfyui-ci-container:\K[0-9.]+' .github/workflows/ci-tests-e2e.yaml | head -1 || echo "unknown")
+          CURRENT=$(grep -oP 'hanzo-studio-ci-container:\K[0-9.]+' .github/workflows/ci-tests-e2e.yaml | head -1 || echo "unknown")
           echo "current_version=$CURRENT" >> $GITHUB_OUTPUT
 
       - name: Update container references
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           # Update all container references in both workflow files
-          sed -i "s|ghcr.io/comfy-org/comfyui-ci-container:[0-9.]*|ghcr.io/comfy-org/comfyui-ci-container:${VERSION}|g" \
+          sed -i "s|ghcr.io/comfy-org/hanzo-studio-ci-container:[0-9.]*|ghcr.io/comfy-org/hanzo-studio-ci-container:${VERSION}|g" \
             .github/workflows/ci-tests-e2e.yaml \
             .github/workflows/pr-update-playwright-expectations.yaml
 
